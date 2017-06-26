@@ -42,7 +42,7 @@ module OkComputer
     def to_json(*args)
       # NOTE swallowing the arguments that Rails passes by default since we don't care. This may prove to be a bad idea
       # Rails passes stuff like this: {:prefixes=>["ok_computer", "application"], :template=>"show", :layout=>#<Proc>}]
-      {registrant_name => {:message => message, :success => success?, :time => time}}.to_json
+      {registrant_name => {:message => message, :status => success?() ? "ok" : "failed" , :time => time}}.to_json
     end
 
     def <=>(check)
